@@ -1,0 +1,11 @@
+Ctrl+a：切换到命令行的开始
+Ctrl+e：切换到命令行末尾
+Ctrl+l ：等同于clear
+Ctrl+u：清除光标之前的内容
+Ctrl+k：清除光标之后的内容
+Ctrl+y：粘贴刚才所删除的字符
+Ctrl+r：在历史命令中查找
+Ctrl+c：终止命令
+Ctrl+z：转入后台运行
+Ctrl+d：即出shell，logout
+!$       ：显示系统最近的一条命令的参数

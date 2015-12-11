@@ -1,0 +1,14 @@
+1. 创建名字为username.github.io的repository。
+2. 生成ssh key，并关联到github上，参见https://help.github.com/articles/generating-ssh-keys/
+3. 安装git和node.js
+4. 安装hexo，参见https://hexo.io/docs/index.html
+     $ npm install -g hexo-cli
+     $ hexo init <folder>
+     $ cd <folder>
+     $ npm install
+5. 下载hexo主题，参见https://hexo.io/themes/
+6. 设置_config.yml文件：
+     deploy:
+          type: git
+          repository: git@github.com:username/username.github.io.git
+          branch: master

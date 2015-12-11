@@ -1,0 +1,262 @@
+cvResize
+函数功能：图像大小变换
+函数原型：
+void cvResize(
+  const CvArr* src,
+  CvArr* dst,
+  int interpolation=CV_INTER_LINEAR
+);
+函数说明：
+第一个参数表示输入图像。
+第二个参数表示输出图像。
+第三个参数表示插值方法，可以有以下四种：
+CV_INTER_NN - 最近邻插值,
+CV_INTER_LINEAR - 双线性插值 (缺省使用)
+CV_INTER_AREA - 使用象素关系重采样。当图像缩小时候，该方法可以避免波纹出现。当图像放大时，类似于 CV_INTER_NN 方法..
+CV_INTER_CUBIC - 立方插值.
+这个函数在功能上与Win32 API中的StretchBlt()函数类似。
+
+
+ 
+cvCreateImage
+函数功能：创建图像
+函数原型：
+IplImage* cvCreateImage(CvSize size, intdepth, intchannels);
+函数说明：
+第一个参数表示图像的大小。
+第二个参数表示图像的深度，可以为IPL_DEPTH_8U，IPL_DEPTH_16U等等。
+第三个参数表示图像的通道数。
+
+cvCanny
+函数功能：采用Canny方法对图像进行边缘检测
+函数原型：
+void cvCanny(
+  const CvArr* image,
+  CvArr* edges,
+  double threshold1,double threshold2,
+  int aperture_size=3
+);
+函数说明：
+第一个参数表示输入图像，必须为单通道灰度图。
+第二个参数表示输出的边缘图像，为单通道黑白图。
+第三个参数和第四个参数表示阈值，这二个阈值中当中的小阈值用来控制边缘连接，大的阈值用来控制强边缘的初始分割即如果一个像素的梯度大与上限值，则被认为是边缘像素，如果小于下限阈值，则被抛弃。如果该点的梯度在两者之间则当这个点与高于上限值的像素点连接时我们才保留，否则删除。
+第五个参数表示Sobel 算子大小，默认为3即表示一个3*3的矩阵。Sobel 算子与高斯拉普拉斯算子都是常用的边缘算子，详细的数学原理可以查阅专业书籍。
+
+
+ 
+ 
+cvCreateTrackbar
+函数功能：创建trackbar并添加到指定窗口
+函数原型：
+int cvCreateTrackbar(
+  const char* trackbar_name,
+  const char* window_name,
+  int* value,
+  intcount,
+  CvTrackbarCallback on_change
+);
+函数说明：
+第一个参数表示该trackbar的名称。
+第二个参数表示窗口名称，该trackbar将显示在这个窗口内。
+第三个参数表示创建时滑块的位置。
+第四个参数表示滑块位置的最大值，最小值固定为0。
+第五个参数表示回调函数。当滑块位置有变化时，系统会调用该回调函数。
+注：被创建的trackbar默认显示在指定窗口的顶端，可以通过函数cvGetTrackbarPos()来获取trackbar显示的位置信息，以及通过函数cvSetTrackbarPos()来重新设置trackbar的显示位置。
+CvTrackbarCallback
+定义：
+typedef void (CV_CDECL *CvTrackbarCallback)(int pos)
+说明：
+当trackbar位置被改变的时，系统会调用这个回调函数，并将参数pos设置为表示trackbar位置的数值。
+
+
+ 
+ 
+cvThreshold
+函数功能：采用Canny方法对图像进行边缘检测
+函数原型：
+void cvThreshold(
+  const CvArr* src,
+  CvArr* dst,
+  double threshold,
+  double max_value,
+  int threshold_type
+);
+函数说明：
+第一个参数表示输入图像，必须为单通道灰度图。
+第二个参数表示输出的边缘图像，为单通道黑白图。
+第三个参数表示阈值
+第四个参数表示最大值。
+第五个参数表示运算方法。
+在OpenCV的imgproc\types_c.h中可以找到运算方法的定义。
+/* Threshold types */
+enum
+{
+    CV_THRESH_BINARY      =0,  /* value = value > threshold ? max_value : 0       */
+    CV_THRESH_BINARY_INV  =1,  /* value = value > threshold ? 0 : max_value       */
+    CV_THRESH_TRUNC       =2,  /* value = value > threshold ? threshold : value   */
+    CV_THRESH_TOZERO      =3,  /* value = value > threshold ? value : 0           */
+    CV_THRESH_TOZERO_INV  =4,  /* value = value > threshold ? 0 : value           */
+    CV_THRESH_MASK        =7,
+    CV_THRESH_OTSU        =8  /* use Otsu algorithm to choose the optimal threshold value; combine the flag with one of the above CV_THRESH_* values */
+};
+注1：OpenCV还有个cvAdaptiveThreshold()函数，这个函数会使用Otsu算法(大律法或最大类间方差法)（注1）来计算出一个全局阈值，然后根据这个阈值进行二值化。
+
+注2：调用cvThreshold()时传入参数CV_THRESH_OTSU也是使用Otsu算法来自动生成一个阈值。
+
+
+ 
+
+cvFindContours
+函数功能：对图像进行轮廓检测，这个函数将生成一条链表以保存检测出的各个轮廓信息，并传出指向这条链表表头的指针。
+函数原型：
+int cvFindContours(
+  CvArr* image,
+  CvMemStorage* storage,
+  CvSeq** first_contour, 
+  int header_size=sizeof(CvContour),
+  int mode=CV_RETR_LIST, 
+  int method=CV_CHAIN_APPROX_SIMPLE,
+  CvPoint offset=cvPoint(0,0)
+);
+函数说明：
+第一个参数表示输入图像，必须为一个8位的二值图像。
+第二参数表示存储轮廓的容器。为CvMemStorage类型，定义在OpenCV的\core\types_c.h中。
+第三个参数为输出参数，这个参数将指向用来存储轮廓信息的链表表头。
+第四个参数表示存储轮廓链表的表头大小，当第六个参数传入CV_CHAIN_CODE时，要设置成sizeof(CvChain)，其它情况统一设置成sizeof(CvContour)。
+第五个参数为轮廓检测的模式，有如下取值：
+    CV_RETR_EXTERNAL：只检索最外面的轮廓；
+    CV_RETR_LIST：检索所有的轮廓，并将其保存到一条链表当中；
+    CV_RETR_CCOMP：检索所有的轮廓，并将他们组织为两层：顶层是各部分的外部边界，第二层是空洞的边界；
+    CV_RETR_TREE：检索所有的轮廓，并重构嵌套轮廓的整个层次，可以参见下图。
+ 
+第六个参数用来表示轮廓边缘的近似方法的，常用值如下所示：
+    CV_CHAIN_CODE：以Freeman链码的方式输出轮廓，所有其他方法输出多边形（顶点的序列）。
+    CV_CHAIN_APPROX_SIMPLE：压缩水平的、垂直的和斜的部分，也就是，函数只保留他们的终点部分。
+第七个参数表示偏移量，比如你要从图像的（100, 0）开始进行轮廓检测，那么就传入（100, 0）。
+
+ 
+ 
+
+ 
+ 
+cvDrawContours
+函数功能：在图像上绘制外部和内部轮廓
+函数原型：
+void cvDrawContours(
+  CvArr *img,
+  CvSeq* contour,
+  CvScalar external_color,
+  CvScalar hole_color,
+  int max_level,
+  int thickness=1,
+  int line_type=8,
+  CvPoint offset=cvPoint(0,0)
+);
+第一个参数表示输入图像，函数将在这张图像上绘制轮廓。
+第二个参数表示指向轮廓链表的指针。
+第三个参数和第四个参数表示颜色，绘制时会根据轮廓的层次来交替使用这二种颜色。
+第五个参数表示绘制轮廓的最大层数，如果是0，只绘制contour；如果是1，追加绘制和contour同层的所有轮廓；如果是2，追加绘制比contour低一层的轮廓，以此类推；如果值是负值，则函数并不绘制contour后的轮廓，但是将画出其子轮廓，一直到abs(max_level) - 1层。
+第六个参数表示轮廓线的宽度，如果为CV_FILLED则会填充轮廓内部。
+第七个参数表示轮廓线的类型。
+第八个参数表示偏移量，如果传入（10，20），那绘制将从图像的（10，20）处开始。
+
+
+
+cvHoughLines2函数功能：检测图像中的线段
+函数原型：
+CvSeq* cvHoughLines2(
+  CvArr* image,
+  void* line_storage,
+  int method,
+  double rho,
+  double theta,
+  int threshold,
+  double param1=0, double param2=0
+);
+参数说明：
+第一个参数表示输入图像，必须为二值图像（黑白图）。
+第二个参数表示存储容器，和上一篇的轮廓检测一样，可以传入CvMemStorage类型的指针。
+第三个参数表示变换变量，可以取下面的值：
+  CV_HOUGH_STANDARD - 传统或标准 Hough 变换. 每一个线段由两个浮点数 (ρ, θ) 表示，其中 ρ 是线段与原点(0,0) 之间的距离，θ 线段与 x-轴之间的夹角。
+  CV_HOUGH_PROBABILISTIC - 概率 Hough 变换(如果图像包含一些长的线性分割，则效率更高)。它返回线段分割而不是整个线段。每个分割用起点和终点来表示。
+  CV_HOUGH_MULTI_SCALE - 传统 Hough 变换的多尺度变种。线段的编码方式与 CV_HOUGH_STANDARD 的一致。
+第四个参数表示与象素相关单位的距离精度。
+第五个参数表示弧度测量的角度精度。
+第六个参数表示检测线段的最大条数，如果已经检测这么多条线段，函数返回。
+第七个参数与第三个参数有关，其意义如下：
+  对传统 Hough 变换，不使用(0).
+  对概率 Hough 变换，它是最小线段长度.
+  对多尺度 Hough 变换，它是距离精度 rho 的分母 (大致的距离精度是 rho 而精确的应该是 rho / param1 ).
+第八个参数与第三个参数有关，其意义如下：
+  对传统 Hough 变换，不使用 (0).
+  对概率 Hough 变换，这个参数表示在同一条线段上进行碎线段连接的最大间隔值(gap), 即当同一条线段上的两条碎线段之间的间隔小于param2时，将其合二为一。
+  对多尺度 Hough 变换，它是角度精度 theta 的分母 (大致的角度精度是 theta 而精确的角度应该是 theta / param2).
+
+
+cvHoughCircles
+函数功能：检测图像中的圆
+函数原形：
+CVAPI(CvSeq*) cvHoughCircles(
+  CvArr* image, void* circle_storage,
+  int method,
+  double dp,
+  double min_dist,
+  double param1 CV_DEFAULT(100),
+  double param2 CV_DEFAULT(100),
+  int min_radius CV_DEFAULT(0),
+  int max_radius CV_DEFAULT(0)
+);
+可以看出cvHoughCircles与上面的cvHoughLines2函数比较类似，因此讲下部分参数的意思就可以了：
+第二个参数表示Hough变换方式，目前只能用CV_HOUGH_GRADIENT。
+第三个参数表示寻找圆弧圆心的累计分辨率，通常设置成1就可以了。
+第四个参数表示两个不同圆之间的最小距离，由于是按圆心来计算距离的，因此对同心圆的检测就无能为力了。
+注意，圆检测函数可以使用灰度图。
+
+
+ 
+cvCreateHist
+函数功能：创建直方图
+函数原型：
+CVAPI(CvHistogram*)  cvCreateHist( // Creates new histogram
+  int dims,
+  int* sizes,
+  int type,
+  float** ranges CV_DEFAULT(NULL),
+  int uniform CV_DEFAULT(1)
+);
+参数说明：
+第一个参数表示直方图维数，灰度图为1，彩色图为3。
+第二个参数表示直方图维数的数目，其实就是sizes数组的维数。
+第三个参数表示直方图维数尺寸的数组。
+第四个参数表示直方图类型，为CV_HIST_ARRAY表示直方图数据表示为多维密集数组，为CV_HIST_TREE表示直方图数据表示为多维稀疏数组。
+第五个参数表示归一化标识，其原理有点复杂。通常使用默认值即可。
+函数说明：
+直方图的数据结构如下所示：
+typedef struct CvHistogram
+{
+    int     type;
+    CvArr*  bins;
+    float   thresh[CV_MAX_DIM][2];  /* For uniform histograms. */
+    float** thresh2;                /* For non-uniform histograms. */
+    CvMatND mat;     /* Embedded matrix header for array histograms. */
+}CvHistogram;
+
+
+cvCalcHist
+函数功能：根据图像计算直方图
+函数原型：
+void  cvCalcHist(
+  IplImage** image,
+  CvHistogram* hist,
+  int accumulate CV_DEFAULT(0),
+  const CvArr* mask CV_DEFAULT(NULL)
+)
+参数说明：
+第一个参数表示输入图像。
+第二个参数表示输出的直方图指针。
+第三个参数操作mask, 确定输入图像的哪个象素被计数。
+第四个参数表示累计标识。如果设置，则直方图在开始时不被清零。这个特征保证可以为多个图像计算一个单独的直方图，或者在线更新直方图。
+函数说明：
+这是个inline函数，函数内部会直接调用cvCalcArrHist( (CvArr**)image, hist, accumulate, mask );
+
+ 

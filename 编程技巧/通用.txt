@@ -1,0 +1,12 @@
+求连续循环数据的大小
+// 注意k为2的倍数
+int maxSize = 2^n
+if(end>start) {
+    size = end-start
+} else {
+    size = maxSize-start+end
+}
+等价于：
+size = (end-start) & (maxSize-1)
+
+==========================================

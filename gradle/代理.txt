@@ -1,0 +1,7 @@
+使用代理
+-Dhttp.proxyHost=proxy.tencent.com 
+-Dhttp.proxyPort=8080
+或者
+ 新建gradle.properties文件，并填入
+systemProp.http.proxyHost=proxy.tencent.com
+systemProp.http.proxyPort=8080

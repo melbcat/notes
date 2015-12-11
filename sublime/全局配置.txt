@@ -1,0 +1,15 @@
+Preferences->Settings-User
+{
+"theme": "Soda Dark.sublime-theme",
+"soda_classic_tabs": true,
+"soda_folder_icons": true,
+"color_scheme": "Packages/Theme - Spacegray/base16-eighties.dark.tmTheme",
+"http_proxy": "ip:8080",
+"proxy_password": "******",
+"proxy_username": "cdai",
+"ignored_packages":
+[
+"Vintage", "Markdown"
+],
+"file_exclude_patterns": [".tags", ".tags_sorted_by_file", "*.exe"]
+}

@@ -1,0 +1,18 @@
+系统的应用信息存放在/data/system/packages.xml中，由com.android.server.pm.Setting读取.
+如下面是readDisabledSysPackageLPw的部分代码，其读取了应用第一次安装时间和最后更新时间。
+timeStampStr = parser.getAttributeValue(null, "it");
+if (timeStampStr != null) {
+    try {
+        ps.firstInstallTime = Long.parseLong(timeStampStr, 16);
+    } catch (NumberFormatException e) {
+    }
+}
+timeStampStr = parser.getAttributeValue(null, "ut");
+if (timeStampStr != null) {
+    try {
+        ps.lastUpdateTime = Long.parseLong(timeStampStr, 16);
+    } catch (NumberFormatException e) {
+    }
+}
+
+这些信息将存放在PackageInfo。

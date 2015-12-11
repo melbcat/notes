@@ -1,0 +1,29 @@
+访问windows共享文件夹
+    ctrl+L
+    smb://192.168.0.*
+
+执行elf文件提示 bash: xxx 没有那个文件或目录
+    原因：没有32位的运行库
+    解决方案：sudo apt-get install ia32-libs
+            如果提示没有可用的软件包，则用以下命令：
+                      sudo apt-get install libc6:i386 libgcc1:i386 gcc-4.6-base:i386 libstdc++5:i386 libstdc++6:i386
+            或者如果说被其它的所替代，就用其列出的来安装
+
+jd-gui出现找不到libXxf86vm:
+    sudo apt-get install libgtk2.0-0:i386 libxxf86vm1:i386 libsm6:i386 lib32stdc++6
+
+sudo apt-get -f install 出错时，使用 sudo dpkg -P <package name>来删除出错的包
+
+执行./configure报错：
+    出错信息：
+        configure: error: cannot find install-sh, install.sh, or shtool in "." "./.." "./../.."
+    解决方案：
+        automake --add-missing命令
+
+    出错信息：
+        ./configure: line 1844: syntax error near unexpected token `config.h'
+        ./configure: line 1844: `AM_CONFIG_HEADER(config.h)'
+    解决方案：
+        autoreconf -i
+        
+    

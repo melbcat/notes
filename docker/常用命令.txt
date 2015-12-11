@@ -1,0 +1,20 @@
+中文文档：http://dockerpool.com/static/books/docker_practice/index.html
+启动服务：
+     sudo service docker start
+获取镜像：
+     sudo docker pull ubuntu:14.04 或
+     sudo docker pull dl.dockerpool.com:5000/ubuntu:14.04
+列出本地镜像：
+     sudo docker images
+运行镜像：
+     sudo docker run -t -i -p 127.0.0.1:80:5000 --name web ubuntu:14.04 /bin/bash
+     -t 代表绑标准输入流 
+     -i 代表让容器的标准输入保持打开
+     -p 用来绑定IP与端口，如上面代表我们可以通过访问本机的80端口来访问容器的5000端口
+     --name 用来指定容器的名字
+利用Dockerfile创建镜像：
+     sudo docker build -t="noverguo/mydocker" .
+     注意，'.'代表Dockerfile在当前目录
+列出所以容器的状态：
+     sudo docker ps -l
+     

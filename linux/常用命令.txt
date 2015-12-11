@@ -1,0 +1,33 @@
+zip xxx.zip dir/* -r
+unzip xxx.zip
+
+删除特殊字符的文件：
+ls -i 
+rm `find ./ -inum 388678`
+
+
+列出所有文件路径：
+ls -a | sed "s:^:`pwd`/:"
+查找当前文件夹下所有大于1024byte的文件：
+find . -size +1024c
+
+远程拷贝
+scp local_file remote_username@remote_ip:remote_file
+
+ ./exec.sh scp mqq@10.187.24.87:/usr/local/app/Warden/WardenRelease/boss/boss.jar /usr/local/app/Warden/WardenRelease/boss/boss.jar
+
+.tar.gz 和 .tgz
+解压：tar zxvf FileName.tar.gz
+压缩：tar zcvf FileName.tar.gz DirName
+
+find -type f -size 85c | xargs -n 1 rm -f
+
+pgrep processName 得到进程名对应的pid
+
+1.在下达的命令后面加上&，就可以使该命令在后台进行工作，这样做最大的好处就是不怕被ctrl+c这个中断指令所中断。
+2. 那大家可能又要问了，在后台执行的程序怎么使它恢复到前台来运行呢？很简单，只用执行fg这个命令，就可以了。
+3.可能有些同学又要问了，我现在已经在前台运行的命令，我能把它放到后台去运行么？当然可以了，只要执行ctrl+z就可以做到了。是不是很赞啊！
+4.说到这里可能有些同学又要问了，如果我有多个进程在后台运行，那如何恢复到前台来执行呢？这时候就要用到jobs这个命令了，通过jobs这个命令，能够列出所有在后台执行的进程，那个中括号（[ ]）里面的数字就是 jobs 的代号啰 ，通过fg %number 就可以恢复指定的后台进程.
+
+创建大小为1024的文件
+dd if=/dev/zero of=hello.txt bs=1024 count=1

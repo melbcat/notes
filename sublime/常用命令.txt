@@ -1,0 +1,35 @@
+查找文件：
+     Ctrl+P
+定位函数：
+     Ctrl+R     
+          @+函数名
+定位到行：
+     Ctrl+G
+          :行数
+查找标识：
+     Ctrl+P
+          #标识
+      或直接Ctrl+;
+多处同步编辑：
+     Ctrl+D
+垂直下拉：
+     按住Shift，然后按住鼠标右键
+查找：
+     Ctrl+F
+     Enter查找下一个，Shift+Enter查找上一个
+查找替换：
+     Ctrl+H
+全项目查找：
+     Ctrl+Shift+F
+函数跳转：
+     F12
+删除光标所在行：
+    Ctrl+Shift+K
+选择整行（按多次会不断往下选择）
+    Ctrl+L
+打开或隐藏侧边栏：
+    Ctrl+K Ctrl+B
+保存工程：
+     Project | Save Project As....
+项目切换：
+    Ctrl+Alt+P

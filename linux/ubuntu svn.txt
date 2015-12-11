@@ -1,0 +1,43 @@
+一、SVN安装 
+1.安装包 
+1.$ sudo apt-get install subversion 
+
+2.创建项目目录 
+
+$ sudo mkdir /home/xiaozhe/svn
+$ cd /home/xiaozhe/svn/
+$ sudo mkdir mypro
+
+3.创建svn文件仓库
+$ sudo svnadmin create /home/xiaozhe/svn/mypro
+ 
+4.导入项目到svn文件仓库 (可有可无)
+$ sudo svn import -m "" 你的文件夹路径 file:///home/xiaozhe/svn/mypro
+ 
+5.访问权限设置 
+修改 /home/xiaozhe/svn/mypro/conf目录下： 
+svnserve.conf 、passwd 个文件,行最前端不允许有空格 
+
+编辑svnserve.conf文件,把如下面行取消注释，并需要顶格
+anon-access = read
+auth-access = write
+
+password-db = passwd 
+
+
+编辑passwd  如下: 
+[users] 
+andy = andy 
+
+
+6. 开启svnserve,以SVN根目录开启： 
+$ svnserve -d -r /home/xiaozhe/svn
+ 
+7.检查是否正常启动
+$ netstat -ntlp
+可以看到有一个端口为3690的地址，表示启动成功
+（如果使用Apache连接，则跳过下步）
+8.局域网访问，checkout出来SVN库的文件
+svn checkout svn://SvnIp地址/mypro 
+或者简写为： 
+svn co svn://SvnIp地址/mypro

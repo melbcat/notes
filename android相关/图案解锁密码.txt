@@ -1,0 +1,1 @@
+密码存放文件： /data/system/gesture.key

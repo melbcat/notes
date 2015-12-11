@@ -1,0 +1,3 @@
+windows命令行: set http_proxy=http://proxy.tencent.com:8080
+
+git设置代理: git config --global http.proxy http://proxy.tencent.com:8080

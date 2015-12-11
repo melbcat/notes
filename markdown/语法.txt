@@ -1,0 +1,59 @@
+参考：http://www.jianshu.com/p/q81RER
+
+标题
+     
+# 一级标题## 二级标题### 三级标题#### 四级标题##### 五级标题###### 六级标题
+
+列表
+     无序：  - 或 +
+     有序： 1. 2.之类的
+
+链接
+     [显示文本](链接地址 "title文字" )
+或
+      [显示文本 ][id]
+      [id]: 链接地址 "title文字"
+
+     注意：title文字是可选的
+
+图片
+      ![alt text](链接地址 "title文字 ")
+或
+      ![alt text][id]
+      [id]: 链接地址 "title文字"
+
+代码
+     用反引号括住，如：
+     `fmt.println("hello")`
+
+引用
+      >文本
+ 
+粗体
+     **文本**
+
+斜体
+     *文本*
+
+表格
+相关代码：
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+显示效果：
+TablesAreCoolcol 3 isright-aligned$1600col 2 iscentered$12zebra stripesare neat$1
+
+
+相关代码：dog | bird | cat
+----|------|----
+foo | foo  | foo
+bar | bar  | bar
+baz | baz  | baz
+显示效果：
+dogbirdcatfoofoofoobarbarbarbazbazbaz
+
+自动链接
+     <http://www.xxx.com>
+     <noverguo@gmail.com>

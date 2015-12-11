@@ -1,0 +1,51 @@
+Android平台提供了交叉编译工具链，就放在Android的NDK开发包的toolchains目录下，在我们的Makefile文件中，只需给出相应的编译工具即可。
+
+我们目标是把下面这个math.c文件编译成一个静态库文件：
+```c
+#include <stdio.h>
+
+int add( int a , int b ) {
+    return a+b;
+}
+```
+
+你需要编写一个Makefile文件，这里假设你的Android ndk被安装在 /opt/android/ndk 目录下，当然，你可以根据自己的实际情况修改Makefile中相关路径的定义，Makefile文件示例如下：
+
+```shell
+.PHONY: clean
+
+NDKROOT=/opt/android/ndk
+PLATFORM=$(NDKROOT)/platforms/android-14/arch-arm
+
+CROSS_COMPILE=$(NDKROOT)/toolchains/arm-linux-androideabi-4.6/prebuilt/linux-x86/bin/arm-linux-androideabi-
+
+CC=$(CROSS_COMPILE)gcc
+AR=$(CROSS_COMPILE)ar
+LD=$(CROSS_COMPILE)ld
+
+CFLAGS = -I$(PWD) -I$(PLATFORM)/usr/include -Wall -O2 -fPIC -DANDROID -DHAVE_PTHREAD -mfpu=neon -mfloat-abi=softfp
+LDFLAGS =
+
+TARGET = libmath.a
+SRCS = $(wildcard *.c)
+OBJS = $(SRCS:.c=.o)
+
+all: $(OBJS)
+        $(AR) -rc $(TARGET) $(OBJS)
+clean:
+        rm -f *.o *.a *.so
+```    
+
+这里不讲Makefile文件的基本原理，只说明一下针对Android环境的Makefile文件编写的注意事项。
+     ``` CROSS_COMPILE ```
+
+必须正确给出Android NDK编译工具链的路径，当在目录中执行make命令的时候，编译系统会根据 CROSS_COMPILE 前缀寻找对应的编译命令。
+     ``` -I$(PLATFORM)/usr/include ```
+
+由于Android平台没有使用传统的c语言库libc，而是自己编写了一套更加高效更适合嵌入式平台的c语言库，所以系统头文件目录不能再使用默认的路径，必须直到Android平台的头文件目录
+     ``` -Wall -O2 -fPIC -DANDROID -DHAVE_PTHREAD -mfpu=neon -mfloat-abi=softfp ```
+
+这些参数的意义网上基本上都有介绍，我就不一一解释了，并不都是必须添加的，但比较常用。
+
+编译方法：
+     - 写好makefile文件，并且保存之后，就可以直接在当前目录下执行make命令，编译完成后，当前目录下会生成 libmath.a ，即可直接拿到Android的jni工程中和使用了。

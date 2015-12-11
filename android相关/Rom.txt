@@ -1,0 +1,10 @@
+RFS的解包和打包：
+
+Linux:
+mount –o loop factoryfs.rfs System
+umount System
+
+android:
+dd if=dev/block/stl9 of=/sdcard/factoryfs.rfs bs=4096
+dd if=/dev/block/stl10 of=/sdcard/dbdata.rfs bs=4096
+dd if=/dev/block/stl11 of=/sdcard/cache.rfs bs=4096

@@ -1,0 +1,26 @@
+http://www.cnblogs.com/tornadomeet/archive/2012/03/28/2420936.html
+
+正样本：   只有人脸的图片
+负样本：   不包含人脸的图片
+
+把图片处理成灰度图，正样本图片处理成24*24的灰度图
+
+生成样本名列表：  dir /B > pos_img.txt
+如：
+_IMG_5244.jpg
+_IMG_5245.jpg
+
+并在前面加上路径名（在notepad++中使用替换  (.*jpg)   -->   pos_img/\1）：
+如：
+pos_img/_IMG_5244.jpg
+pos_img/_IMG_5245.jpg
+
+创建vec文件
+    opencv_createsamples -vec pos.vec -info pos_img.txt -bg neg_img.txt -w 24 -h 24 -num 154
+        其中的-vec是指定后面输出vec文件的文件名，-info指定正样本描述文件，-bg指定负样本描述文件，-w和-h分别指正样本的宽和高，-num表示正样本的个数。执行完该命令后就会在当前目录下生产一个pos.vec文件了。
+
+训练
+    opencv_haartraining.exe -data result -vec pos.vec -bg neg_img.txt -nsplits 1 -sym -w 24 -h 24 -mode all -mem 1280 -npos 81 -nneg 80
+        其中-data为输出xml中间文件的位置(目录)，-sym表示训练的目标为垂直对称，-nsplits 1表示使用简单的stump classfier分类。-mem 1280 表示允许使用计算机的1280M内存,-mode all 表示使用haar特征集的种类既有垂直的，又有45度角旋转的。-npos表示正样本的数量，-nneg表示负样本的数量
+    
+    opencv_traincascade.exe -data hog -vec pos.vec -bg bg\bg.txt -numPos 80 -numNeg 320 -numStages 16 -precalcValbufSize 200 -precalcdxBufSize 1000 -featureType HOG -w 24 -h 24

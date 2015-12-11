@@ -1,0 +1,22 @@
+
+
+点击红包：
+com.tencent.mm.ui.chatting.ck.onClick --> com.tencent.mm.ui.chatting.z.a(View paramView, ChattingUI.a parama, ad paramad)
+
+点击拆红包：
+com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyReceiveUI$3.onClick -> com.tencent.mm.plugin.luckymoney.b.k.a(Button,int)
+
+构造消息的ContentValues，用于插入数据库
+com.tencent.mm.d.b.az.mH()
+
+wxpay://c2cbizmessagehandler/hongbao/receivehongbao
+
+msgId：
+com.tencent.mm.storage.ad.field_msgId
+
+聊天记录：
+com.tencent.mm.storage.r
+
+消息View：
+com.tencent.mm.ui.chatting.cj.getView(int paramInt, View paramView, ViewGroup paramViewGroup)
+     实际具体返回的红包View：com.tencent.mm.ui.chatting.av extends RelativeLayout

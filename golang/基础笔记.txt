@@ -1,0 +1,53 @@
+插件（要求eclipse在Eclipse 4.4.1 (Luna SR1)版本以上）：
+http://goclipse.github.io/releases/ 
+
+go get需要用到hg命令： https://mercurial.selenic.com/wiki/Download
+
+build for android:
+go get golang.org/x/mobile/cmd/gomobile
+gomobile init
+gomobile.exe bind -target=android github.com/noverguo/go/testCalc
+
+switch n {
+case 1, 2:
+    n = 10
+    fallthrough  // 默认是不会向下传递的，需要显示fallthrough进行向下传递
+case n > 2:
+    n = 20
+default:
+    n=30
+}
+
+defer  延时列表，LIFO，类似于java的finally
+
+panic 恐慌，等同于抛异常
+recover  只能在defer中执行，如果没恐慌，则返回nil。
+如：
+func r() (hasPanic bool) {
+    defer func() {
+        if res := recover(); res != nil {
+            hasPanic = true
+        }
+    }()
+    hasPanic  = false
+    p()
+    return
+}
+
+func() {
+    panic
+}
+
+// 定义一个栈结构
+type stack struct {
+    i int
+    data [10]int
+}
+
+func (s *stack) (val int) {
+    if(s.i > 9) {
+        return
+    }
+    s.data[s.i] = val 
+    s.i++
+}

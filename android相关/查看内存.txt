@@ -1,0 +1,12 @@
+查看应用内存使用情况
+adb shell dumpsys meminfo $package_name or $pid
+
+java中看内存使用情况
+
+	1. final ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);     
+	2. ActivityManager.MemoryInfo info = new ActivityManager.MemoryInfo();    
+	3. activityManager.getMemoryInfo(info);     
+	4. Log.i(tag,"系统剩余内存:"+(info.availMem >> 10)+"k");    
+	5. Log.i(tag,"系统是否处于低内存运行："+info.lowMemory); 
+	6. Log.i(tag,"当系统剩余内存低于"+info.threshold+"时就看成低内存运行"); 
+

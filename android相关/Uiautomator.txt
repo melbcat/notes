@@ -1,0 +1,3 @@
+1、create java project 
+2、android create uitest-project -n <jars> -t 1 -p <project path> 
+3、open build.xml, edit "help"

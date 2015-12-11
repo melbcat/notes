@@ -1,0 +1,10 @@
+NDK定位错误代码行号：
+    1、 adb shell logcat | ndk-stack -sym $PROJECT_PATH/obj/local/armeabi
+    2、 adb shell logcat > 1.log
+           ndk-stack -sym $PROJECT_PATH/obj/local/armeabi -dump 1.log
+    3、 $NDK_PATH/toolchains/arm-linux-androideabi-4.x/prebuilt/linux-x86_64/bin/arm-linux-androideabi-addr2line -e $PROJECT_PATH/obj/local/armeabi/xx.so  000014d5
+
+一些会导致Bug的地方：
+    JNI函数中IsInstanceOf中的实现中（Jni.cpp），如果obj为空，则返回true，而在对应dalvik指令instance-of的实现中(InterpC-portable.cpp)，如果obj为空，则返回0
+
+Java把boolean byte char short int都统一当作int来处理，所以使用时，要注意类型的转换

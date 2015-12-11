@@ -1,0 +1,13 @@
+Makefile             全局Makefile
+bionic               基础库源代码（bionic libc）
+bootloader           引导加载器
+build                编译用到的工具和脚本
+dalvik               虚拟机
+development          开发用到的模板和工具
+external             用到的开源库
+frameworks           框架相关
+hardware             硬件抽象（GPS, WIFI, POWER等）
+kernel               内核
+prebuilt             android在各平台编译的预置脚本
+recovery             恢复相关
+system               android的一些低层库

@@ -1,0 +1,35 @@
+我们知道,在Linux下可以使用gcc来把一份C代码编译成为Linux上的可执行程序, 如:
+
+$ gcc -o main.out main.c
+
+而Android平台提供了NDK工具包来交叉编译可以运行于Android系统中的应用程序, 它需要我们编写 Android.mk来配置编译选项和编译目标, 那么, 能否也像gcc那样直接在命令行下编译呢？
+
+答案是可以的, NDK只不过是把这个过程封装和抽象了而已, 我们完全可以直接调用 NDK 提供的编译工具链来编译我们的C代码, 方法如下所示(在命令行界面中执行):
+
+1. 定义相关的目录(请修改为自己的相关目录)
+
+```
+$ export NDKROOT=/opt/android/android-ndk-r10
+$ export SYSROOT=$NDKROOT/platforms/android-19/arch-arm
+$ export GCC=$NDKROOT/toolchains/arm-linux-androideabi-4.6/prebuilt/linux-x86_64/bin/arm-linux-androideabi-gcc
+```
+
+2. 编译代码
+
+```
+$ $GCC -o main.out main.c --sysroot=$SYSROOT
+```
+
+3. 执行程序
+
+```
+$ adb push main.out /data/local/
+$ adb shell
+$ /data/local/main.out
+```
+
+其核心思想其实很简单, 就是使用NDK提供的arm-linux-androideabi-gcc代替Linux下的gcc工具, 使用NDK提供的C头文件/库文件目录代替 Linux 下默认的目录, 其实, 使用gcc编译的时候默认的 sysroot设置为了本机的"/"目录, 等价于如下命令 :
+
+```
+$ gcc -o main.out main.c --sysroot=/
+```

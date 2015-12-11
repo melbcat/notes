@@ -1,0 +1,24 @@
+http://172.22.106.13/ 源码下载地址
+aapt dump badging apkUrl
+aapt dump xmltree  apkUrl AndroidManifest.xml
+截图命令：screencap
+解锁屏幕：adb shell input keyevent 82
+获取权限列表：adb shell pm list permissions
+获取Activity栈信息：adb shell dumpsys activity activities
+
+获取顶层Activity：adb shell dumpsys activity | findstr mFocusedActivity
+无Context环境下获取ActivityManager： IActivityManager am = ActivityManagerNative.getDefault();
+无Context环境下获取PackageManager： IPackageManager pm = IPackageManager.Stub.asInterface(ServiceManager.getService("package"));
+
+
+ 
+
+模拟器代理设置：
+adb shell setprop net.eth0.dns1 10.3.15.83
+adb shell setprop net.dns1 10.3.15.83
+adb shell setprop net.gprs.http-proxy proxy.tencent.com:8080
+
+
+sqlite3 /data/data/com.android.providers.settings/databases/settings.db
+INSERT INTO system VALUES(99,'http_proxy','proxy.tencent.com:8080');
+

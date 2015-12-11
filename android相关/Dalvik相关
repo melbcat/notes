@@ -1,0 +1,29 @@
+重启zygote：
+    adb shell stop
+    adb shell start
+
+设置系统特性：
+    adb shell setprop <name> <value>
+    或
+    adb shell "echo name=value >> /data/local.prop"
+
+打开JNI检测：
+    adb shell setprop dalvik.vm.checkjni true   等同于启动Dalvik时传入参数-Xcheck:jni
+    或
+    adb shell setprop dalvik.vm.jniopts forcecopy  等同于启动Dalvik时传入参数-Xjniopts
+
+开启Java自带的assert断言功能:
+    adb shell setprop dalvik.vm.enableassertion all  等同于启动Dalvik时传入参数-ea..
+
+强制重新调用dexopt进行检验：
+    adb shell "rm /data/dalvik-cache/*"
+
+执行带Main函数的程序：
+    编译为Dex：
+        dx --dex --output=app.jar  类名.class
+    执行：
+        adb push app.jar /data/app/
+        adb shell  dalvikvm -cp /data/app/app.jar  类名
+
+使用dvz工具（用于Framework开发过程的调试）：
+    dvz -classpath /data/app/xx.apk 类名

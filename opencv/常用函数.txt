@@ -1,0 +1,24 @@
+void cvResize(const CvArr* src, CvArr* dst,  int interpolation=CV_INTER_LINEAR); // 图像大小变换
+
+IplImage* cvCreateImage(CvSize size, intdepth, intchannels);  // 创建图像
+
+void cvCanny(const CvArr* image,  CvArr* edges,  double threshold1,double threshold2,  int aperture_size=3); // 采用Canny方法对图像进行边缘检测
+
+int cvCreateTrackbar(const char* trackbar_name,  const char* window_name,  int* value,  intcount,  CvTrackbarCallback on_change);  // 创建trackbar并添加到指定窗口
+
+void cvThreshold(const CvArr* src,  CvArr* dst,  double threshold,  double max_value,  int threshold_type); // 采用Canny方法对图像进行边缘检测
+
+int cvFindContours(CvArr* image,  CvMemStorage* storage, CvSeq** first_contour, int header_size=sizeof(CvContour), int mode=CV_RETR_LIST, int method=CV_CHAIN_APPROX_SIMPLE, CvPoint offset=cvPoint(0,0)); // 对图像进行轮廓检测，这个函数将生成一条链表以保存检测出的各个轮廓信息，并传出指向这条链表表头的指针。
+
+void cvDrawContours(CvArr *img,  CvSeq* contour,  CvScalar external_color,  CvScalar hole_color,  int max_level,  int thickness=1,  int line_type=8, CvPoint offset=cvPoint(0,0)); // 在图像上绘制外部和内部轮廓
+
+CvSeq* cvHoughLines2(CvArr* image,  void* line_storage,  int method,  double rho,  double theta,  int threshold,  double param1=0, double param2=0); // 检测图像中的线段
+
+CVAPI(CvSeq*) cvHoughCircles(CvArr* image, void* circle_storage, int method,  double dp,  double min_dist,  double param1 CV_DEFAULT(100),  double param2 CV_DEFAULT(100), int min_radius CV_DEFAULT(0),  int max_radius CV_DEFAULT(0)); // 检测图像中的圆
+
+CVAPI(CvHistogram*)  cvCreateHist(int dims,  int* sizes,  int type,  float** ranges CV_DEFAULT(NULL),  int uniform CV_DEFAULT(1)); // 创建直方图
+
+void  cvCalcHist(IplImage** image, CvHistogram* hist, int accumulate CV_DEFAULT(0), const CvArr* mask CV_DEFAULT(NULL)); // 根据图像计算直方图
+
+ 
+ 
