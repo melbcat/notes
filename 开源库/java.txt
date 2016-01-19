@@ -1,0 +1,6 @@
+javapoet:  	java代码生成
+	https://github.com/square/javapoet
+JavaPoetic: java代码生成
+	https://github.com/yongjhih/JavaPoetic
+ASM:		bytecode生成，可生成.class文件
+	http://asm.ow2.org/

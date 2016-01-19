@@ -1,0 +1,12 @@
+跨平台编译：
+	linux:
+		$ GOOS=linux GOARCH=amd64 go build main.go
+	windows:
+		$ GOOS=windows GOARCH=amd64 go build main.go
+	OS X:
+		$ GOOS=darwin GOARCH=amd64 go build main.go
+	freebsd:
+		$ GOOS=freebsd GOARCH=amd64 go build main.go
+
+	GOARCH:
+		386 / amd64 / arm

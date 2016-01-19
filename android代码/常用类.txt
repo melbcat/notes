@@ -1,0 +1,5 @@
+android.util.Patterns
+	包含了域名、邮件地址、ip地址、电话、webUrl等Pattern
+
+TimingLogger
+	打印运行时间的Log类

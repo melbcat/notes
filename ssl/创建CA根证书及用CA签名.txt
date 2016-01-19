@@ -1,0 +1,27 @@
+参见：http://blog.csdn.net/zhourinatian/article/details/42979743
+1、创建工作目录，并将openssl.cnf复制到工作目录中:
+	~$ mkdir ~/ssl
+	~/ssl$ mkdir ~/ssl/demoCA
+	~/ssl/demoCA$ mkdir ~/ssl/demoCA/newcerts
+	~/ssl/demoCA$ sudo cp /etc/ssl/openssl.cnf ~/ssl
+	~/ssl/demoCA$ touch ./index.txt
+	~/ssl/demoCA$ echo "01" >> serial
+	注意，创建demoCA目录后，需把openssl.cnf中"[ CA_default ]"下的"dir = /etc/pki/CA"更改为"dir = ~/ssl/demoCA"
+2、生成CA
+	~/ssl$ openssl req -new -x509 -keyout ca.key -out ca.crt -config openssl.cnf -days 365
+3、生成服务器端Key
+	~/ssl$ openssl genrsa -des3 -out server.key 1024
+4、生成服务器待签csr文件
+	~/ssl$ openssl req -new -key server.key -out server.csr -config openssl.cnf
+5、使用CA为生成的服务器csr文件签名
+	~/ssl$ openssl ca -in server.csr -out server.crt -cert ca.crt -keyfile ca.key -config openssl.cnf
+6、生成客户端Key
+	~/ssl$ openssl genrsa -des3 -out client.key 1024
+7、生成客户端待签csr文件
+	~/ssl$ openssl req -new -key client.key -out client.csr -config openssl.cnf
+8、使用CA为生成的客户端csr文件签名
+	~/ssl$ openssl ca -in client.csr -out client.crt -cert ca.crt -keyfile ca.key -config openssl.cnf
+	
+注：签名时，可能会出现"failed to update database TXT_DB error number 2"的错误
+	这时可修改~/ssl/demoCA/index.txt.attr文件，使其包含unique_subject = no
+	参见：http://stackoverflow.com/questions/9496698/how-to-revoke-an-openssl-certificate-when-you-dont-have-the-certificate

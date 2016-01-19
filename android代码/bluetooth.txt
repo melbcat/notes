@@ -1,0 +1,23 @@
+// 开启或关闭蓝牙
+BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+adapter.enable()
+adapter.disable();
+
+// 监听蓝牙状态改变（如开启或关闭）
+new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
+new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        // Broadcast receiver is always running on the UI thread here,
+        // so we don't need consider thread synchronization.
+        int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR);
+        switch (state) {
+            case BluetoothAdapter.STATE_TURNING_ON:
+            case BluetoothAdapter.STATE_ON:
+            case BluetoothAdapter.STATE_TURNING_OFF:
+            case BluetoothAdapter.STATE_OFF:
+            default:
+        }
+    }
+};
+

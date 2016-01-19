@@ -1,0 +1,5 @@
+证书中各关系:
+http://www.cnblogs.com/kyrios/p/tls-and-certificates.html
+
+android中使用自签名证书
+参见：http://blog.csdn.net/opengl_es/article/details/40918991

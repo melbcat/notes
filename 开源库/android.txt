@@ -1,0 +1,68 @@
+rxjava:    异步代码编写框架
+	https://github.com/ReactiveX/RxJava
+rxandroid:	用于android的主线程调度
+	https://github.com/ReactiveX/RxAndroid
+rxbinding:  针对android的view编写异步代码
+	https://github.com/JakeWharton/RxBinding
+
+butterknife: View绑定
+	https://github.com/JakeWharton/butterknife
+
+proguard-annotations: 用annotation来写proguard的规则
+	https://github.com/yongjhih/proguard-annotations
+
+hugo: AOP框架
+	https://github.com/JakeWharton/hugo
+
+
+辅助开发：
+	leakcanary:	检测内存泄漏
+		https://github.com/square/leakcanary
+	crashlytics: crash上报
+		https://fabric.io/kits/android/crashlytics/summary
+	stetho: 像Chrome的F12的调试工具
+		http://facebook.github.io/stetho/
+
+HTTP:
+	okhttp: 支持HTTP/2、SPDY
+		http://square.github.io/okhttp/
+	retrofit:	 使用REST、注解，兼容rxjava
+	https://github.com/square/retrofit
+
+测试
+	mockito： 对象模拟测试框架
+		http://mockito.org/
+	JUnit:	  单元测试
+		https://github.com/junit-team/junit
+	hamcrest: 单元测试,junit4.4后已集成
+		http://hamcrest.org/JavaHamcrest/
+	robolectric: 提供离线的Activity, Context等方便测试
+		http://robolectric.org/
+
+
+图片加载：
+	Android-Universal-Image-Loader:	优化更好
+		https://github.com/nostra13/Android-Universal-Image-Loader
+	Picasso: jar比较小
+		https://github.com/square/picasso
+	glide:
+		https://github.com/bumptech/glide
+
+JSON To POJO
+	GSON:		
+		https://github.com/google/gson
+	jackson: 
+		https://github.com/FasterXML/jackson
+	ig-json-parser:	编译时处理
+		https://github.com/Instagram/ig-json-parser/
+	LoganSquare：	编译时处理(建议)
+		https://github.com/bluelinelabs/LoganSquare
+
+ORM:
+	ActiveAndroid:
+		https://github.com/pardom/ActiveAndroid/
+	greenDAO:
+		http://greendao-orm.com/
+	DBFlow:
+		https://github.com/Raizlabs/DBFlow
+
