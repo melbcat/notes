@@ -1,0 +1,7 @@
+开启PostgreSQL数据库服务和metasploit服务:
+	service postgresql start
+	service metasploit start
+
+	设置随系统启动：
+		update-rc.d postgresql enable
+		update-rc.d metasploit enable
