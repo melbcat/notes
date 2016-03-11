@@ -22,7 +22,10 @@ scp local_file remote_username@remote_ip:remote_file
 
 find -type f -size 85c | xargs -n 1 rm -f
 
-pgrep processName 得到进程名对应的pid
+得到进程名对应的pid
+pgrep processName 
+查看对应进程在内存中的映射
+cat /proc/`pgrep processName`/maps  
 
 1.在下达的命令后面加上&，就可以使该命令在后台进行工作，这样做最大的好处就是不怕被ctrl+c这个中断指令所中断。
 2. 那大家可能又要问了，在后台执行的程序怎么使它恢复到前台来运行呢？很简单，只用执行fg这个命令，就可以了。

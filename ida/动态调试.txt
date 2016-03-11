@@ -1,0 +1,17 @@
+打开DDMS
+
+adb push android_server /data/local/tmp/android_server
+adb shell
+su
+chmod 777 /data/local/tmp/android_server
+cd /data/local/tmp/
+./android_server
+
+开另一个cmd窗口
+adb forward tcp:23946 tcp:23946
+adb shell am start -D -n 包名/主入口Activity
+ida->debugger->attach->remote Armlinux/andoid debugger选择对应的进程进行调试
+ida->debugger->debugger opions中设置suspend on thread start/exit和suspend on library load/unload
+jdb -connect com.sun.jdi.SocketAttach:hostname=127.0.0.1,port=8700
+ida中F9运行
+ctrl+s查找对应的lib，下断，F9运行
