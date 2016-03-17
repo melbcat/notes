@@ -29,3 +29,15 @@ sudo apt-get -f install 出错时，使用 sudo dpkg -P <package name>来删除�
 破解WebStorm:
     //在注册的时候选择“License serve”模式，
     //然后输入“http://15.idea.lanyus.com/”
+
+源:
+deb http://mirrors.sohu.com/ubuntu/ trusty main restricted universe multiverse
+deb http://mirrors.sohu.com/ubuntu/ trusty-security main restricted universe multiverse
+deb http://mirrors.sohu.com/ubuntu/ trusty-updates main restricted universe multiverse
+deb http://mirrors.sohu.com/ubuntu/ trusty-proposed main restricted universe multiverse
+deb http://mirrors.sohu.com/ubuntu/ trusty-backports main restricted universe multiverse
+deb-src http://mirrors.sohu.com/ubuntu/ trusty main restricted universe multiverse
+deb-src http://mirrors.sohu.com/ubuntu/ trusty-security main restricted universe multiverse
+deb-src http://mirrors.sohu.com/ubuntu/ trusty-updates main restricted universe multiverse
+deb-src http://mirrors.sohu.com/ubuntu/ trusty-proposed main restricted universe multiverse
+deb-src http://mirrors.sohu.com/ubuntu/ trusty-backports main restricted universe multiverse
