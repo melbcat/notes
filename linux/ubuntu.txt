@@ -26,4 +26,6 @@ sudo apt-get -f install 出错时，使用 sudo dpkg -P <package name>来删除�
     解决方案：
         autoreconf -i
         
-    
+破解WebStorm:
+    //在注册的时候选择“License serve”模式，
+    //然后输入“http://15.idea.lanyus.com/”

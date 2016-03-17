@@ -1,37 +1,22 @@
 Preferences->Settings-User
-
 {
-	"color_scheme": "Packages/Theme - Spacegray/base16-eighties.dark.tmTheme",
-	"file_exclude_patterns":
-	[
-		".tags",
-		".tags_sorted_by_file",
-		"*.exe"
-	],
-	"font_size": 9,
+	"color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
 	"ignored_packages":
 	[
-		"Markdown",
-		"Vintage"
+		"Vintage",
+		"Markdown"
 	],
-	"soda_classic_tabs": true,
-	"soda_folder_icons": true,
-	"theme": "Soda Dark.sublime-theme"
+	"theme": "Material-Theme.sublime-theme"
 }
 
 "installed_packages":
 [
 	"ClangAutoComplete",
 	"ConvertToUTF8",
-	"CTags",
-	"FileDiffs",
 	"GoSublime",
-	"OmniMarkupPreviewer",
-	"Package Control",
+	"Markdown Preview",
+	"MarkdownEditing",
+	"Material Theme",
 	"SideBarEnhancements",
-	"Smali",
-	"SublimeAStyleFormatter",
-	"SublimeREPL",
-	"Theme - Soda",
-	"Theme - Spacegray"
+	"Smali"
 ]
