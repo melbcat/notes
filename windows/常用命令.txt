@@ -1,1 +1,2 @@
- nox_adb.exe connect 127.0.0.1:62001
+nox_adb.exe connect 127.0.0.1:62001
+c1c6cd3a1b2ffe572012da0fd0cb110add59fee1eaffab462820642a2d6ea8c8
