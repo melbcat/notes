@@ -1,3 +1,9 @@
+卡屏后:
+    重启：
+        alt+SysRq+b
+    关机：
+        alt+SysRq+o
+
 访问windows共享文件夹
     ctrl+L
     smb://192.168.0.*
