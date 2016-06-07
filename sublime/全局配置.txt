@@ -1,22 +1,44 @@
 Preferences->Settings-User
 {
 	"color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
+	"file_exclude_patterns":
+	[
+		".tags",
+		".tags_sorted_by_file",
+		"*.exe"
+	],
+	"font_size": 12,
 	"ignored_packages":
 	[
-		"Vintage",
-		"Markdown"
+		"Markdown",
+		"Vintage"
 	],
-	"theme": "Material-Theme.sublime-theme"
+	"soda_classic_tabs": true,
+	"soda_folder_icons": true,
+	"tab_size": 2,
+	"theme": "Material-Theme.sublime-theme",
+	"translate_tabs_to_spaces": true
 }
+
 
 "installed_packages":
 [
 	"ClangAutoComplete",
 	"ConvertToUTF8",
+	"CTags",
+	"FileDiffs",
 	"GoSublime",
 	"Markdown Preview",
-	"MarkdownEditing",
 	"Material Theme",
+	"OmniMarkupPreviewer",
+	"Package Control",
 	"SideBarEnhancements",
-	"Smali"
+	"Smali",
+	"SublimeAStyleFormatter",
+	"SublimeREPL",
+	"Theme - Soda",
+	"Theme - Spacegray",
+	"Vue Syntax Highlight",
+	"Vuejs Complete Package",
+	"Vuejs Snippets"
 ]
