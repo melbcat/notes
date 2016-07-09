@@ -1,0 +1,38 @@
+系统版本：
+	auxiliary/scanner/smb/smb_version
+
+ssl版本：
+	auxiliary/scanner/ssh/ssh_version
+
+密码嗅探（FTP、IMAP、POP3、SMB、URL）：
+	auxiliary/sniffer/psnuffle
+
+wmap:
+	加载插件：
+		load wmap
+
+	设置扫描IP：
+		msf > wmap_sites -a http://www.0day.co
+		[*] Site created.
+		msf > wmap_sites -l
+		[*] Available sites
+		===============
+
+		     Id  Host         Vhost        Port  Proto  # Pages  # Forms
+		     --  ----         -----        ----  -----  -------  -------
+		     0   180.76.7.52  180.76.7.52  80    http   0        0
+
+		msf > wmap_targets -t http://180.76.7.52
+		msf > wmap_targets -l
+		[*] Defined targets
+		===============
+
+	     Id  Vhost        Host         Port  SSL    Path
+	     --  -----        ----         ----  ---    ----
+	     0   180.76.7.52  180.76.7.52  80    false  	/
+
+	执行扫描：
+		wmap_run -e
+
+	扫描完成后：
+		wmap_vulnns -l

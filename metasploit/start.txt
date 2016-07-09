@@ -5,3 +5,4 @@
 	设置随系统启动：
 		update-rc.d postgresql enable
 		update-rc.d metasploit enable
+
